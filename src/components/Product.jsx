@@ -15,7 +15,7 @@ const listMenu = [
   },
   {
     id: uuidv4(),
-    name: "іііі and Burger",
+    name: "Trying Vercel test",
     price: "10.99",
   },
 ];
