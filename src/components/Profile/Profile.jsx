@@ -3,7 +3,7 @@ import "./Profile.css";
 
 const Profile = ({ name, tag, location, image, stats }) => {
   return (
-    <div className="profile-container">
+    <div className="profile-container flex-container">
       <div className="profile">
         <img className="profile-avatar" src={image} alt={name} width="120" />
         <h1 className="profile-name">{name}</h1>

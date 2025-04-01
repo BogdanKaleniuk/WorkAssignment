@@ -1,0 +1,55 @@
+table {
+  border-collapse: collapse;
+  width: 80%; /* Задайте ширину таблиці, яку ви хочете */
+}
+
+.table-container {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.transaction-table {
+  border: 2px solid black;
+  margin: 20px;
+  width: 90%;
+  border-collapse: collapse;
+}
+
+.transaction-table th {
+  border: 2px solid black; /* Чорні лінії між усіма клітинками */
+
+  background-color: #2a2a2a;
+  color: white;
+  font-weight: 700;
+
+  padding: 10px;
+}
+
+.transaction-table td {
+  border: 2px solid black; /* Чорні лінії між усіма клітинками */
+
+  padding: 10px;
+
+  font-weight: 600;
+}
+.header-row th {
+  background-color: #2a2a2a;
+  color: white;
+}
+.even-row {
+  background-color: #ffffff;
+}
+
+.odd-row {
+  background-color: #d3d3d3;
+}
+
+.transaction-table tr:nth-child(even) {
+  background-color: #d3d3d3;
+}
+.transaction-table tr:nth-child(odd) {
+  background-color: #ffffff;
+}
