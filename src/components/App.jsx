@@ -9,15 +9,19 @@ import TransactionHistory from "./TransactionHistory/TransactionHistory";
 const App = () => {
   return (
     <>
-      <Profile
-        name={userData.username}
-        tag={userData.tag}
-        location={userData.location}
-        image={userData.avatar}
-        stats={userData.stats}
-      />
-      <FriendList friends={friends} />
-      <TransactionHistory transactions={transactions} />
+      <h1>
+        <h2 className="center-container">1</h2>
+        <Profile
+          name={userData.username}
+          tag={userData.tag}
+          location={userData.location}
+          image={userData.avatar}
+          stats={userData.stats}
+        />
+        <FriendList friends={friends} />
+        <TransactionHistory transactions={transactions} />
+        <h2 className="center-container">2</h2>
+      </h1>
     </>
   );
 };
