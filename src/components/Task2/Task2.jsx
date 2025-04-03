@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import Description from "./Description/Description";
 import Options from "./Options/Options";
 import Feedback from "./Feedback/Feedback";
-// import Feedbacks from "./Feedbacks.json";
 import "./style.css";
 
 const Task2 = () => {

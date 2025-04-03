@@ -2,7 +2,7 @@ import React from "react";
 
 const Feedback = ({ good, neutral, bad }) => {
   const total = good + neutral + bad;
-  const positiveFeedback = ((good + neutral) / `${total}`) * 100;
+  const positiveFeedback = Math.round(((good + neutral) / total) * 100);
   return (
     <div>
       {total > 0 ? (
@@ -11,7 +11,7 @@ const Feedback = ({ good, neutral, bad }) => {
           <p>Neutral: {neutral}</p>
           <p>Bad: {bad}</p>
           <p>Total: {total}</p>
-          <p>Positive: {total > 0 ? `${positiveFeedback.toFixed(2)}%` : ""}</p>
+          <p>Positive: {total > 0 ? `${positiveFeedback}%` : ""}</p>
         </div>
       ) : (
         <p>No feedback</p>
