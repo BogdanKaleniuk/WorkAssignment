@@ -4,3 +4,9 @@
   align-items: center;
   text-align: center;
 }
+
+.contactsList {
+  list-style: none;
+  display: flex;
+  justify-content: space-between;
+}
