@@ -1,11 +1,11 @@
 import React from "react";
 import ImageCard from "./ImageCard";
 
-const ImageGallery = ({ images }) => {
+const ImageGallery = ({ images, onImageClick }) => {
   return (
     <ul>
       {images.map((image) => (
-        <li key={image.id}>
+        <li onClick={() => onImageClick(image)} key={image.id}>
           <ImageCard image={image} />
         </li>
       ))}

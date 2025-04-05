@@ -2,34 +2,70 @@ import React, { useState } from "react";
 import SearchBar from "./SearchBar/SearchBar";
 import Loader from "./Loader/Loader";
 import { fetchImagesWithTopic } from "./images.api";
-import axios from "axios";
 import ImageGallery from "./ImageGallery/ImageGallery";
+import "./index.css";
+import LoadMoreBtn from "./LoadMoreBtn/LoadMoreBtn";
+import ImageModal from "./ImageModal/ImageModal";
 
 const Task4 = () => {
   const [images, setImages] = useState([]);
-  // const [loading, setLoading] = useState(false);
-  // const [error, setError] = useState(false);
+  const [loading, setLoading] = useState(false);
+  const [topic, setTopic] = useState("");
+  const [selectedImage, setSelectedImage] = useState(null);
 
-  const handleSearch = async (topic) => {
+  // const [error, setError] = useState(false);
+  const [page, setPage] = useState(1);
+
+  const handleSearch = async (newTopic) => {
     try {
       setImages([]);
       // setError(false);
-      // setLoading(true);
-      const data = await fetchImagesWithTopic(topic);
+      setLoading(true);
+      setTopic(newTopic);
+
+      setPage(1);
+      const data = await fetchImagesWithTopic(newTopic, 1);
       console.log(data);
       setImages(data);
     } catch (error) {
       // setError(true);
     } finally {
-      // setLoading(false);
+      setLoading(false);
     }
   };
 
+  const handleLoadMore = async () => {
+    try {
+      const nextPage = page + 1;
+      setLoading(true);
+
+      const data = await fetchImagesWithTopic(topic, nextPage);
+      setImages((prevImages) => [...prevImages, ...data]);
+      setPage(nextPage);
+    } catch (error) {
+      console.error("Error loading more:", error);
+    } finally {
+      setLoading(false);
+    }
+  };
+  const handleImageClick = (image) => {
+    setSelectedImage(image);
+  };
+
+  const closeModal = () => {
+    setSelectedImage(null);
+  };
   return (
-    <div>
+    <div className="container">
       <SearchBar onSearch={handleSearch} />
-      <Loader />
-      <ImageGallery images={images} />
+      {loading && <Loader />}
+      <ImageGallery images={images} onImageClick={handleImageClick} />
+      {images.length > 0 && !loading && (
+        <LoadMoreBtn onClick={handleLoadMore} />
+      )}
+      {selectedImage && (
+        <ImageModal image={selectedImage} onClose={closeModal} />
+      )}
     </div>
   );
 };
