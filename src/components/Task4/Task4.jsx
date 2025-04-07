@@ -13,13 +13,13 @@ const Task4 = () => {
   const [topic, setTopic] = useState("");
   const [selectedImage, setSelectedImage] = useState(null);
 
-  // const [error, setError] = useState(false);
+  const [error, setError] = useState(false);
   const [page, setPage] = useState(1);
 
   const handleSearch = async (newTopic) => {
     try {
       setImages([]);
-      // setError(false);
+      setError(false);
       setLoading(true);
       setTopic(newTopic);
 
@@ -28,7 +28,7 @@ const Task4 = () => {
       console.log(data);
       setImages(data);
     } catch (error) {
-      // setError(true);
+      setError(true);
     } finally {
       setLoading(false);
     }
@@ -64,7 +64,14 @@ const Task4 = () => {
         <LoadMoreBtn onClick={handleLoadMore} />
       )}
       {selectedImage && (
-        <ImageModal image={selectedImage} onClose={closeModal} />
+        <ImageModal
+          image={selectedImage}
+          isOpen={!!selectedImage}
+          onClose={closeModal}
+        />
+      )}
+      {error && (
+        <p className="error-message">Сталася помилка. Спробуйте ще раз 🛠️</p>
       )}
     </div>
   );
