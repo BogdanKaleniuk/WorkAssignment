@@ -1,50 +1,46 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
+import { searchMovies } from "./api";
+import { Link } from "react-router-dom";
 
 const MoviesSearch = () => {
   const [movies, setMovies] = useState([]);
-  const [query, setQuery] = useState("matrix");
+  const [query, setQuery] = useState("");
 
   useEffect(() => {
-    const fetchMovies = async () => {
-      const url = `https://api.themoviedb.org/3/search/movie?query=${query}&include_adult=false&language=en-US&page=1`;
+    if (!query) return;
 
-      const options = {
-        headers: {
-          Authorization:
-            "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI3ODgwZjEwMjA4MTI5ZGY0MDVmMGYzZDUyNjQxNDFlZSIsIm5iZiI6MTY2NjM0MjEwNy4xMzMsInN1YiI6IjYzNTI1Y2RiOTU5MGUzMDA5MTVhZjA5YiIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.vKfXAl-0fdHQ-PP0LkuqkdAPs9Ooz8DxPdxqCEDg9Ss",
-        },
-      };
-
+    const load = async () => {
       try {
-        const response = await axios.get(url, options);
-        setMovies(response.data.results);
-      } catch (err) {
-        console.error(err);
+        const data = await searchMovies(query);
+        setMovies(data);
+      } catch (error) {
+        console.log(error);
       }
     };
-
-    fetchMovies();
+    load();
   }, [query]);
 
   return (
-    <div>
-      <h1>Movie List</h1>
+    <div className="p-4">
+      <h1 className="text-2xl font-bold mb-4">Movie List</h1>
       <input
         type="text"
         value={query}
         onChange={(e) => setQuery(e.target.value)}
         placeholder="Search movies..."
+        className="mb-6 p-2 border border-gray-300 rounded-md w-full max-w-md"
       />
-      <div style={{ display: "flex", flexWrap: "wrap", gap: "10px" }}>
+      <div className="flex flex-wrap gap-4">
         {movies.map((movie) => (
-          <div key={movie.id} style={{ width: "200px" }}>
-            <img
-              src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-              alt={movie.title}
-              style={{ width: "100%" }}
-            />
-            <p>{movie.title}</p>
+          <div key={movie.id} className="w-48">
+            <Link to={`/task5/movies/${movie.id}`}>
+              <img
+                src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
+                alt={movie.title}
+                className="w-full h-auto rounded-md shadow-md"
+              />
+              <p className="mt-2 text-sm font-medium">{movie.title}</p>
+            </Link>
           </div>
         ))}
       </div>

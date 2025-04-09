@@ -31,7 +31,7 @@ const App = () => {
         <Route path="/task2" element={<Task2 />} />
         <Route path="/task3" element={<Task3 />} />
         <Route path="/task4" element={<Task4 />} />
-        <Route path="/task5*" element={<Task5 />} />
+        <Route path="/task5/*" element={<Task5 />} />
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
