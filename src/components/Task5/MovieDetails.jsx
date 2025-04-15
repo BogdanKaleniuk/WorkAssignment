@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { useParams, useNavigate } from "react-router-dom";
+import { useParams, useNavigate, useLocation } from "react-router-dom";
 import { fetchMovieCredits, fetchMovieDetails, fetchMovieReviews } from "./api";
 import { Link } from "react-router-dom"; // використовуємо Link для переходу на сторінку фільму
 
@@ -11,6 +11,8 @@ const MovieDetails = () => {
   const [reviews, setReviews] = useState([]); // Рев'ю
   const [activeTab, setActiveTab] = useState("overview"); // Для вкладок
   const navigate = useNavigate(); // Для зміни маршруту
+  const location = useLocation();
+  console.log("Nash location", location);
 
   useEffect(() => {
     const loadMovieDetails = async () => {
@@ -77,6 +79,13 @@ const MovieDetails = () => {
 
   return (
     <div style={{ display: "flex", padding: "20px" }}>
+      <Link
+        to={location.state?.from?.pathname || "/task5"}
+        state={{ query: location.state?.searchQuery }}
+      >
+        Назад до пошуку
+      </Link>
+
       {/* Лівий блок з фото */}
       <div style={{ width: "300px", marginRight: "20px" }}>
         <h1>{movieDetails.title}</h1>
@@ -86,7 +95,6 @@ const MovieDetails = () => {
           style={{ width: "300px" }}
         />
       </div>
-
       {/* Правий блок з вкладками */}
       <div style={{ flex: 1, position: "relative" }}>
         {/* Кнопки вкладок */}
@@ -109,7 +117,11 @@ const MovieDetails = () => {
               <p>{movieDetails.overview}</p>
               <p>Release Date: {movieDetails.release_date}</p>
               <p>Popularity: {movieDetails.popularity}</p>
-              <p>Budget: {movieDetails.budget}$</p>
+              <p>
+                Budget:{" "}
+                {movieDetails.budget.toLocaleString("en-US").replace(/,/g, " ")}{" "}
+                $
+              </p>
               <p>
                 Production Companies:{" "}
                 {movieDetails.production_companies

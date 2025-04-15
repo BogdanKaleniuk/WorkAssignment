@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from "react";
 import { searchMovies } from "./api";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 
 const MoviesSearch = () => {
   const [movies, setMovies] = useState([]);
   const [query, setQuery] = useState("");
+  const location = useLocation();
 
   useEffect(() => {
     if (!query) return;
@@ -19,6 +20,11 @@ const MoviesSearch = () => {
     };
     load();
   }, [query]);
+  useEffect(() => {
+    if (location.state?.query) {
+      setQuery(location.state.query);
+    }
+  }, []);
 
   return (
     <div className="p-4">
@@ -33,7 +39,10 @@ const MoviesSearch = () => {
       <div className="flex flex-wrap gap-4">
         {movies.map((movie) => (
           <div key={movie.id} className="w-48">
-            <Link to={`/task5/movies/${movie.id}`}>
+            <Link
+              to={`/task5/movies/${movie.id}`}
+              state={{ from: location, searchQuery: query }}
+            >
               <img
                 src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
                 alt={movie.title}

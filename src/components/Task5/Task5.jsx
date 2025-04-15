@@ -4,6 +4,7 @@ import { Routes, Route, NavLink } from "react-router-dom";
 import MoviesSearch from "./MoviesList";
 import MovieDetails from "./MovieDetails";
 import ActorDetails from "./ActorDetails";
+import MoviesLayout from "./MoviesLayout";
 
 const Task5 = () => {
   return (
@@ -44,14 +45,12 @@ const Task5 = () => {
 
       <Routes>
         <Route path="home" element={<Home />} />
-        <Route path="movies" element={<MoviesSearch />} />
-        <Route path="movies/:id" element={<MovieDetails />} />
-        <Route path="movies/test" element={<div>Test page works</div>} />
-        <Route path="movies/:id/:tab" element={<MovieDetails />} />
-        <Route
-          path="movies/:movieId/actors/:actorID"
-          element={<ActorDetails />}
-        />
+        <Route path="movies" element={<MoviesLayout />}>
+          <Route index element={<MoviesSearch />} />
+          <Route path=":id" element={<MovieDetails />} />
+          <Route path=":id/:tab" element={<MovieDetails />} />
+          <Route path=":movieId/actors/:actorID" element={<ActorDetails />} />
+        </Route>
       </Routes>
     </div>
   );
