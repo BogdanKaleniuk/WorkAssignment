@@ -74,18 +74,11 @@ const MovieDetails = () => {
   const getActorImage = (profile_path) => {
     return profile_path
       ? `https://image.tmdb.org/t/p/w500${profile_path}`
-      : "https://images.kinobaza.com.ua/w2000/656962d76de63.jpg.webp"; // Заглушка для відсутнього фото
+      : "https://images.kinobaza.com.ua/w2000/656962d76de63.jpg.webp";
   };
-
+  const backLink = location.state?.from?.pathname || "/task5/home";
   return (
     <div style={{ display: "flex", padding: "20px" }}>
-      <Link
-        to={location.state?.from?.pathname || "/task5"}
-        state={{ query: location.state?.searchQuery }}
-      >
-        Назад до пошуку
-      </Link>
-
       {/* Лівий блок з фото */}
       <div style={{ width: "300px", marginRight: "20px" }}>
         <h1>{movieDetails.title}</h1>
@@ -97,6 +90,27 @@ const MovieDetails = () => {
       </div>
       {/* Правий блок з вкладками */}
       <div style={{ flex: 1, position: "relative" }}>
+        <Link
+          to={backLink}
+          state={{ query: location.state?.searchQuery }}
+          style={{
+            height: "40px",
+            display: "inline-block",
+            padding: "10px 20px",
+            backgroundColor: "#4CAF50", // Зелений колір для кнопки
+            color: "white", // Білий текст
+            textDecoration: "none", // Прибираємо підкреслення
+            borderRadius: "5px", // Круглі кути
+            textAlign: "center", // Вирівнювання тексту по центру
+            fontSize: "16px", // Розмір шрифту
+            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.2)", // Тінь для кнопки
+            transition: "background-color 0.3s, transform 0.2s", // Анімація при наведенні
+          }}
+          onMouseEnter={(e) => (e.target.style.backgroundColor = "#45a049")} // Тінь при наведенні
+          onMouseLeave={(e) => (e.target.style.backgroundColor = "#4CAF50")} // Відновлення кольору
+        >
+          Назад до пошуку
+        </Link>
         {/* Кнопки вкладок */}
         <div style={{ marginBottom: "20px" }}>
           <button onClick={() => handleTabChange("overview")}>Огляд</button>

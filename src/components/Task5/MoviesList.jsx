@@ -20,6 +20,7 @@ const MoviesSearch = () => {
     };
     load();
   }, [query]);
+
   useEffect(() => {
     if (location.state?.query) {
       setQuery(location.state.query);
