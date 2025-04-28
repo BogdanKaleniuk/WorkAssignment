@@ -79,7 +79,7 @@ const MovieDetails = () => {
   const backLink = location.state?.from?.pathname || "/task5/home";
   return (
     <div style={{ display: "flex", padding: "20px" }}>
-      {/* Лівий блок з фоо */}
+      {/* Лівий блок з оо */}
       <div style={{ width: "300px", marginRight: "20px" }}>
         <h1>{movieDetails.title}</h1>
         <img
