@@ -5,6 +5,8 @@ export const TaskForm = () => {
   const handleSubmit = (event) => {
     event.preventDefault();
     const form = event.target;
+    console.log(event.target.elements.text.value);
+
     form.reset();
   };
 

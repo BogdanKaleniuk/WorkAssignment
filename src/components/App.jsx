@@ -13,7 +13,7 @@ const Home = () => {
 };
 
 const App = () => {
-  const navigate = useNavigate(); //  Ініціалізуємо navigate
+  const navigate = useNavigate();
 
   return (
     <div>
