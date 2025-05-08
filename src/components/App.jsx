@@ -35,7 +35,6 @@ const App = () => {
         <Route path="/task4" element={<Task4 />} />
         <Route path="/task5/*" element={<Task5 />} />
         <Route path="/task6/*" element={<Task6 />} />
-
         <Route path="*" element={<NotFound />} />
       </Routes>
     </div>
