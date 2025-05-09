@@ -1,4 +1,3 @@
-import { createAction } from "@reduxjs/toolkit";
 import { createSlice } from "@reduxjs/toolkit";
 
 const slice = createSlice({
@@ -14,31 +13,18 @@ const slice = createSlice({
   },
   reducers: {
     addTask: (state, action) => {
-      return {
-        ...state,
-        items: [...state.items, action.payload],
-      };
+      state.items.push(action.payload);
     },
     deleteTask: (state, action) => {
-      return {
-        ...state,
-        items: state.items.filter((task) => task.id !== action.payload),
-      };
+      state.items = state.items.filter((item) => item.id !== action.payload);
     },
     toggleCompleted: (state, action) => {
-      return {
-        ...state,
-
-        items: state.items.map((task) => {
-          if (task.id !== action.payload) {
-            return task;
-          }
-          return {
-            ...task,
-            completed: !task.completed,
-          };
-        }),
-      };
+      for (const task of state.items) {
+        if (task.id === action.payload) {
+          task.completed = !task.completed;
+          break;
+        }
+      }
     },
   },
 });
