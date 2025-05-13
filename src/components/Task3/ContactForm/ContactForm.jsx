@@ -1,14 +1,23 @@
 import React from "react";
+import { useDispatch } from "react-redux";
+import { addContact } from "../redux/contactsSlice";
 
-const ContactForm = ({ onAdd }) => {
+const ContactForm = () => {
+  const dispatch = useDispatch();
+
   const handleSubmit = (e) => {
-    console.log(e.target.elements.name.value);
-    e.target.elements.number.value, e.preventDefault();
-    onAdd({
-      id: Date.now(),
-      name: e.target.elements.name.value,
-      number: e.target.elements.number.value,
-    });
+    e.preventDefault();
+
+    const name = e.target.elements.name.value;
+    const number = e.target.elements.number.value;
+
+    dispatch(
+      addContact({
+        id: Date.now(),
+        name,
+        number,
+      })
+    );
     e.target.reset();
   };
 
@@ -18,7 +27,7 @@ const ContactForm = ({ onAdd }) => {
       <input
         type="text"
         name="number"
-        placeholder="Name"
+        placeholder="Number"
         required
         pattern="[0-9]+"
       />
