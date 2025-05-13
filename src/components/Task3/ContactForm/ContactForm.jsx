@@ -10,6 +10,7 @@ const ContactForm = () => {
 
     const name = e.target.elements.name.value;
     const number = e.target.elements.number.value;
+    console.log("Dispatching contact:", { name, number }); // Перевірка значень
 
     dispatch(
       addContact({

@@ -6,7 +6,7 @@ import "modern-normalize";
 import { createContext } from "react";
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
-import { store } from "./components/Task6/redux/store.jsx";
+import { store } from "./components/store.js";
 
 const MyContext = createContext();
 

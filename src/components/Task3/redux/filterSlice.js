@@ -1,11 +1,12 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const filtersSlice = createSlice({
-  name: "filters",
+const filtersContactSlice = createSlice({
+  name: "contactFilters", // або навіть "filters", якщо тільки один був би
   initialState: "",
   reducers: {
     filtersContact: (state, action) => action.payload,
   },
 });
-export const { filtersContact } = filtersSlice.actions;
-export default filtersSlice.reducer;
+
+export const { filtersContact } = filtersContactSlice.actions;
+export default filtersContactSlice.reducer;

@@ -8,5 +8,6 @@ const store = configureStore({
     filter: filterReducer,
   },
 });
+console.log("Store state:", store.getState());
 
 export default store;

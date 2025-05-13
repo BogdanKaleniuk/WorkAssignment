@@ -1,7 +1,7 @@
 import { createSlice } from "@reduxjs/toolkit";
 
-const slice = createSlice({
-  name: "filters",
+const filtersTaskSlice = createSlice({
+  name: "taskFilters", // <<< змінив назву, щоб не конфліктувала
   initialState: {
     status: "all",
   },
@@ -12,6 +12,5 @@ const slice = createSlice({
   },
 });
 
-export const { setStatusFilter } = slice.actions;
-///
-export default slice.reducer;
+export const { setStatusFilter } = filtersTaskSlice.actions;
+export default filtersTaskSlice.reducer;
