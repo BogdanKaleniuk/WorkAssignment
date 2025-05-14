@@ -11,8 +11,8 @@ import taskFilterReducer from "./Task6/redux/filtersSlice"; // цей назив
 export const store = configureStore({
   reducer: {
     contacts: contactsReducer, // Task3
-    filter: contactFilterReducer, // Task3
+    filter: contactFilterReducer,
     tasks: tasksReducer, // Task6
-    filters: taskFilterReducer, // Task6
+    filters: taskFilterReducer,
   },
 });
