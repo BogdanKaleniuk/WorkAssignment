@@ -2,8 +2,35 @@ import React from "react";
 import ContactList from "./Contacts/ContactList";
 import ContactForm from "./ContactForm/ContactForm";
 import SearchBox from "./SearchBox/SearchBox";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import {
+  fetchError,
+  fetchInProgress,
+  fetchSuccess,
+} from "./redux/contactsSlice";
 
 const Task3 = () => {
+  const dispatch = useDispatch();
+  useEffect(() => {
+    const fetchContacts = async () => {
+      try {
+        dispatch(fetchInProgress());
+        const res = await fetch("https://jsonplaceholder.typicode.com/users");
+        const data = await res.json();
+        const normalizedData = data.map((user) => ({
+          id: user.id,
+          name: user.name,
+          number: user.phone,
+        }));
+        dispatch(fetchSuccess(normalizedData));
+      } catch (error) {
+        dispatch(fetchError(error.message));
+      }
+    };
+
+    fetchContacts();
+  }, [dispatch]);
   return (
     <div>
       <h1>Phonebook</h1>
