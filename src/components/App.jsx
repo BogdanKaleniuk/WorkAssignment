@@ -7,6 +7,7 @@ import { Routes, Route, NavLink, useNavigate } from "react-router-dom";
 import NotFound from "./NotFound";
 import Task5 from "./Task5/Task5";
 import { Task6 } from "./Task6/Task6";
+import Test from "./Test/Test";
 
 const Home = () => {
   return <h1>Ласкаво просимо! 👋 Обери завдання з меню</h1>;
@@ -24,6 +25,7 @@ const App = () => {
         <NavLink to="/task4">Task4 </NavLink>
         <NavLink to="/task5">Task5 </NavLink>
         <NavLink to="/task6">Task6 </NavLink>
+        <NavLink to="/test">Test </NavLink>
         <button onClick={() => navigate(-1)}>Back</button>{" "}
       </nav>
 
@@ -34,6 +36,7 @@ const App = () => {
         <Route path="/task3" element={<Task3 />} />
         <Route path="/task4" element={<Task4 />} />
         <Route path="/task5/*" element={<Task5 />} />
+        <Route path="/test" element={<Test />} />
 
         <Route path="/task6/*" element={<Task6 />} />
         <Route path="*" element={<NotFound />} />

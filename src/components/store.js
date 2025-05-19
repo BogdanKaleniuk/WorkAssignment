@@ -8,11 +8,15 @@ import contactFilterReducer from "./Task3/redux/filterSlice"; // цей нази
 import tasksReducer from "./Task6/redux/tasksSlice";
 import taskFilterReducer from "./Task6/redux/filtersSlice"; // цей називаємо filters
 
+// Test
+import usersReducer from "./Test/usersSlice";
+
 export const store = configureStore({
   reducer: {
     contacts: contactsReducer, // Task3
     filter: contactFilterReducer,
     tasks: tasksReducer, // Task6
     filters: taskFilterReducer,
+    users: usersReducer,
   },
 });
