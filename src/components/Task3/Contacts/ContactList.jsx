@@ -7,7 +7,6 @@ const ContactList = () => {
   const dispatch = useDispatch();
   const contacts = useSelector((state) => state.contacts.items);
   const filter = useSelector((state) => state.filter);
-  console.log("Contacts from Redux:", contacts);
 
   const visibleContacts = Array.isArray(contacts)
     ? contacts.filter((contact) =>
