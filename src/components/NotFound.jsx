@@ -12,6 +12,6 @@ const NotFound = () => {
     return () => clearTimeout(timer);
   }, [navigate]);
 
-  return <h1>Сторінку не знайдено. Повертаємо на головну...</h1>;
+  return <h1>Сторінку не знайдено. Повертаємо на головну сторінку...</h1>;
 };
 export default NotFound;
