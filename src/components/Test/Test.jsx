@@ -18,7 +18,6 @@ function Test() {
   // useEffect(() => {
   //   dispatch(fetchUsers());
   // }, [dispatch]);
-  ///
 
   return (
     <div>
