@@ -16,7 +16,19 @@ const usersSlice = createSlice({
     status: "idle", // 'idle' | 'loading' | 'succeeded' | 'failed'
     error: null,
   },
-  reducers: {},
+  reducers: {
+    deleteUser: (state, action) => {
+      state.list = state.list.filter((user) => user.id !== action.payload);
+    },
+    addUser: (state, action) => {
+      const newUser = {
+        id: Date.now(),
+        name: action.payload.name,
+        email: action.payload.email,
+      };
+      state.list.push(newUser);
+    },
+  },
   extraReducers: (builder) => {
     builder
       .addCase(fetchUsers.pending, (state) => {
@@ -32,5 +44,5 @@ const usersSlice = createSlice({
       });
   },
 });
-
+export const { deleteUser, addUser } = usersSlice.actions;
 export default usersSlice.reducer;
