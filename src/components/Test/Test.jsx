@@ -39,7 +39,9 @@ function Test() {
   return (
     <div>
       <button onClick={handleOpen}>{isOpen ? "Close" : "Open"}</button>
-      <h1>Users</h1>
+      <h1>
+        {users.length} User{users.length !== 1 ? "'s" : ""}{" "}
+      </h1>
       <input
         type="text"
         placeholder="Name"
